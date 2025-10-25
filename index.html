@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Cưới - Lan & Minh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #a8e6cf 100%);
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #d63031;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav a:hover {
+            color: #e17055;
+            transform: scale(1.1);
+        }
+        section {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f, #ff9ff3);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #d63031;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .flower-decor {
+            font-size: 4em;
+            color: #ff9ff3;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            animation: float 4s ease-in-out infinite;
+            z-index: -1;
+        }
+        .flower-decor:nth-child(2) {
+            top: 20px;
+            right: 20px;
+            animation-delay: 2s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        /* Section 1: Welcome */
+        #welcome {
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));
+        }
+        .invitation-card {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            padding: 50px;
+            max-width: 800px;
+            animation: bounceIn 1.5s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .couple-info {
+            font-size: 1.3em;
+            color: #e17055;
+            margin: 20px 0;
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        .date-info {
+            font-size: 1.2em;
+            color: #00b894;
+            margin: 20px 0;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+        .message {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 30px 0;
+            padding: 0 30px;
+            animation: fadeInUp 1s ease-out 1.5s both;
+        }
+        /* Section 2: Photos */
+        #photos {
+            background: linear-gradient(rgba(168,230,207,0.8), rgba(168,230,207,0.8));
+        }
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin-top: 50px;
+        }
+        .photo-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideInLeft 1s ease-out;
+        }
+        .photo-frame:nth-child(2) { animation-delay: 0.2s; }
+        .photo-frame:nth-child(3) { animation-delay: 0.4s; }
+        .photo-frame:nth-child(4) { animation-delay: 0.6s; }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .photo-frame:hover img {
+            transform: scale(1.1);
+        }
+        .photo-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.8);
+            padding: 10px;
+            border-radius: 10px;
+            font-family: 'Dancing Script', cursive;
+        }
+        /* Section 3: Story */
+        #story {
+            background: linear-gradient(rgba(255,236,210,0.8), rgba(255,236,210,0.8));
+        }
+        .story-content {
+            max-width: 800px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+        .story-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        /* Section 4: Details */
+        #details {
+            background: linear-gradient(rgba(252,182,159,0.8), rgba(252,182,159,0.8));
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .detail-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+            transition: transform 0.3s;
+        }
+        .detail-card:hover {
+            transform: translateY(-5px);
+        }
+        .detail-card h3 {
+            color: #00b894;
+            margin-bottom: 10px;
+        }
+        /* Section 5: Location */
+        #location {
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        /* Section 6: RSVP */
+        #rsvp {
+            background: linear-gradient(rgba(255,152,243,0.8), rgba(255,152,243,0.8));
+        }
+        .rsvp-form {
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+        .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+        .rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus {
+            border-color: #ff9ff3;
+            outline: none;
+        }
+        .rsvp-form button {
+            background: linear-gradient(135deg, #ff6b6b, #e17055);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        .rsvp-form button:hover {
+            transform: scale(1.05);
+        }
+        /* Section 7: Wishes - New Section */
+        #wishes {
+            background: linear-gradient(rgba(255,236,210,0.8), rgba(255,236,210,0.8));
+        }
+        .wishes-box {
+            background: white;
+            border: 2px dashed #ff9ff3;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+        .wishes-box:hover {
+            transform: scale(1.02);
+            border-color: #ff6b6b;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .wishes-box h3 {
+            color: #00b894;
+            margin-bottom: 10px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+        }
+        .wishes-box p {
+            color: #636e72;
+            font-style: italic;
+        }
+        .wishes-list {
+            display: none;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .wishes-list.show {
+            display: block;
+            animation: slideDown 0.5s ease-out;
+        }
+        .wish-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+        .wish-name {
+            font-weight: bold;
+            color: #d63031;
+            font-size: 1.1em;
+        }
+        .wish-text {
+            margin-top: 5px;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+        .wish-date {
+            font-size: 0.8em;
+            color: #636e72;
+            text-align: right;
+            margin-top: 5px;
+        }
+        .no-wishes {
+            text-align: center;
+            color: #636e72;
+            font-style: italic;
+        }
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            section {
+                padding: 120px 10px 30px;
+            }
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#welcome">Lời Mời</a></li>
+                <li><a href="#photos">Ảnh Cưới</a></li>
+                <li><a href="#story">Câu Chuyện</a></li>
+                <li><a href="#details">Chi Tiết</a></li>
+                <li><a href="#location">Địa Điểm</a></li>
+                <li><a href="#rsvp">Xác Nhận</a></li>
+                <li><a href="#wishes">Lời Chúc</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="flower-decor">🌸</div>
+    <div class="flower-decor">💐</div>
+
+    <!-- Section 1: Welcome -->
+    <section id="welcome">
+        <div class="invitation-card">
+            <div class="flower">💍</div>
+            <h1>Kính Mời Quý Vị</h1>
+            <div class="couple-info">
+                Cô dâu: <strong>Nguyễn Thị Lan</strong><br>
+                Chú rể: <strong>Trần Văn Minh</strong>
+            </div>
+            <div class="date-info">
+                Ngày vui: <strong>15/12/2025</strong><br>
+                Giờ: <strong>18:00</strong>
+            </div>
+            <div class="message">
+                Chúng con xin trân trọng kính mời quý vị<br>
+                đến chung vui trong ngày trọng đại của chúng con.<br>
+                Sự hiện diện của quý vị là niềm vinh hạnh lớn lao đối với gia đình chúng con.<br><br>
+                Với tất cả tình yêu và lòng biết ơn.
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Photos -->
+    <section id="photos">
+        <h2>Những Khoảnh Khắc Đẹp</h2>
+        <div class="photo-gallery">
+            <div class="photo-frame">
+                <img src="https://source.unsplash.com/400x300/?bride,groom" alt="Cô dâu chú rể">
+                <div class="photo-caption">Khoảnh khắc cầu hôn</div>
+            </div>
+            <div class="photo-frame">
+                <img src="https://source.unsplash.com/400x300/?wedding,portrait" alt="Chân dung cặp đôi">
+                <div class="photo-caption">Chân dung tình yêu</div>
+            </div>
+            <div class="photo-frame">
+                <img src="https://source.unsplash.com/400x300/?couple,love" alt="Cặp đôi lãng mạn">
+                <div class="photo-caption">Dạo bước bên nhau</div>
+            </div>
+            <div class="photo-frame">
+                <img src="https://source.unsplash.com/400x300/?wedding,dance" alt="Nhảy múa">
+                <div class="photo-caption">Vũ điệu hạnh phúc</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Story -->
+    <section id="story">
+        <h2>Câu Chuyện Tình Yêu Của Chúng Tôi</h2>
+        <div class="story-content">
+            <p>Họ gặp nhau lần đầu tiên tại một buổi cà phê nhỏ ở Sài Gòn, dưới cơn mưa bất chợt. Lan với nụ cười rạng rỡ và Minh với cuốn sách cũ kỹ trên tay. Từ một lời chào hỏi vụng về, họ đã cùng nhau viết nên những trang tình yêu đẹp đẽ.</p>
+            <p>Sau ba năm bên nhau, qua những chuyến đi xa, những niềm vui và thử thách, họ quyết định gắn kết cuộc đời. Ngày 15/12/2025 sẽ là mốc son đánh dấu hành trình mới – hành trình của một gia đình nhỏ hạnh phúc.</p>
+            <p>Chúng tôi mong quý vị sẽ là những nhân chứng cho tình yêu này.</p>
+        </div>
+    </section>
+
+    <!-- Section 4: Details -->
+    <section id="details">
+        <h2>Thông Tin Chi Tiết</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3>Trang Phục</h3>
+                <p>Cô dâu: Áo dài trắng tinh khôi<br>Chú rể: Vest đen lịch lãm</p>
+            </div>
+            <div class="detail-card">
+                <h3>Lịch Trình</h3>
+                <p>17:00 - Đón khách<br>18:00 - Lễ thành hôn<br>19:00 - Tiệc tùng</p>
+            </div>
+            <div class="detail-card">
+                <h3>Quà Tặng</h3>
+                <p>Không cần quà vật chất, chỉ mong sự hiện diện của quý vị!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Location -->
+    <section id="location">
+        <h2>Địa Điểm Tổ Chức</h2>
+        <div class="location-info">
+            <p>Nhà hàng ABC<br>123 Đường XYZ, Quận 1, TP. Hồ Chí Minh</p>
+        </div>
+        <div class="map-placeholder">
+            Bản đồ sẽ được hiển thị tại đây (Embed Google Maps)
+        </div>
+    </section>
+
+    <!-- Section 6: RSVP -->
+    <section id="rsvp">
+        <h2>Xác Nhận Tham Dự</h2>
+        <div class="rsvp-form">
+            <form id="rsvpForm">
+                <input type="text" id="name" placeholder="Họ và tên" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <select id="guests" required>
+                    <option value="">Số lượng khách</option>
+                    <option value="1">1 người</option>
+                    <option value="2">2 người</option>
+                    <option value="3+">3 người trở lên</option>
+                </select>
+                <textarea id="message" placeholder="Lời chúc phúc (tùy chọn)" rows="4"></textarea>
+                <button type="submit">Xác Nhận</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                Hoặc liên hệ: <a href="mailto:lanminh@wedding.com" style="color: #0984e3;">lanminh@wedding.com</a> | 0123 456 789
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 7: Wishes -->
+    <section id="wishes">
+        <h2>Sổ Lời Chúc</h2>
+        <div class="wishes-box" onclick="toggleWishes()">
+            <h3>💌 Nhấp để xem lời chúc từ bạn bè và gia đình</h3>
+            <p>Hàng trăm lời chúc yêu thương đang chờ bạn khám phá...</p>
+            <div id="wishesList" class="wishes-list">
+                <div id="wishesContent"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Lan & Minh. Với tất cả tình yêu. 💕</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // RSVP Form submission with wishes saving
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const guests = document.getElementById('guests').value;
+            const message = document.getElementById('message').value;
+
+            if (message.trim()) {
+                // Save wish to localStorage
+                const wishes = JSON.parse(localStorage.getItem('weddingWishes') || '[]');
+                wishes.push({
+                    name: name,
+                    text: message,
+                    date: new Date().toLocaleString('vi-VN')
+                });
+                localStorage.setItem('weddingWishes', JSON.stringify(wishes));
+                alert(`Cảm ơn ${name}! Lời chúc của bạn đã được lưu. Chúng tôi sẽ liên hệ sớm về xác nhận tham dự.`);
+            } else {
+                alert('Cảm ơn bạn đã xác nhận! Chúng tôi sẽ liên hệ sớm.');
+            }
+
+            // Reset form
+            this.reset();
+        });
+
+        // Toggle wishes display
+        function toggleWishes() {
+            const list = document.getElementById('wishesList');
+            const content = document.getElementById('wishesContent');
+            list.classList.toggle('show');
+
+            if (list.classList.contains('show')) {
+                loadWishes();
+            }
+        }
+
+        // Load and display wishes
+        function loadWishes() {
+            const wishes = JSON.parse(localStorage.getItem('weddingWishes') || '[]');
+            const content = document.getElementById('wishesContent');
+
+            if (wishes.length === 0) {
+                content.innerHTML = '<div class="no-wishes">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé! 💕</div>';
+                return;
+            }
+
+            content.innerHTML = wishes.map(wish => `
+                <div class="wish-item">
+                    <div class="wish-name">${wish.name}</div>
+                    <div class="wish-text">${wish.text}</div>
+                    <div class="wish-date">${wish.date}</div>
+                </div>
+            `).join('');
+        }
+
+        // Parallax effect for flowers
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.flower-decor').forEach(el => {
+                el.style.transform = `translateY(${scrolled * 0.5}px)`;
+            });
+        });
+
+        // Initial load if wishes box is open (but default closed)
+    </script>
+</body>
+</html>
